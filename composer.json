@@ -1,0 +1,24 @@
+{
+  "name": "artibet/php-utils",
+  "description": "A collection of php utilities",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tsakiridis Sotiris",
+      "email": "artibetgr@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Artibet\\PhpUtils\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "Artibet\\PhpUtils\\Tests": "tests/"
+  },
+  "require": {
+    "nesbot/carbon": "^2.72"
+  }
+}
