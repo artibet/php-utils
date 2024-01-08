@@ -12,7 +12,6 @@ class Encodings
 
     // Detect encoding (ISO-8859-1, or UTF-8)
     $encoding = mb_detect_encoding($str, $validEncodings);
-    print($encoding);
 
     // If already in UTF-8
     if ($encoding === 'UTF-8') return $str;
