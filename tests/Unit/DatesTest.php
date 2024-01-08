@@ -1,6 +1,6 @@
 <?php
 
-namespace Artibet\PhpUtils\Tests;
+namespace Artibet\PhpUtils\Tests\Unit;
 
 use Artibet\PhpUtils\Dates;
 use Carbon\Carbon;
