@@ -1,6 +1,6 @@
 <?php
 
-namespace Artibet\PhpUtils\Laravel;
+namespace Artibet\PhpUtils\Laravel\Traits;
 
 use Exception;
 use Illuminate\Http\UploadedFile;
@@ -18,6 +18,11 @@ trait HasMedia
    */
   protected $isMediaPublic = true;
 
+  /**
+   * Media directory inside
+   */
+  protected $mediaDir = '';
+
 
   /**
    * Path to media directory.
@@ -25,20 +30,20 @@ trait HasMedia
    * Path starts from storage/app
    * @return string
    */
-  protected function mediaDir(): string
+  protected function setMediaDir(string $dir): void
   {
-    return '';
+    $this->mediaDir = $dir;
   }
 
   /**
-   * calculate the local path based on public flag and mediaDir()
+   * calculate the local path based on public flag and mediaDir
    */
   private function localMediaPath(): string
   {
     if ($this->isMediaPublic) {
-      return 'public' . $this->mediaDir();
+      return 'public' . $this->mediaDir;
     } else {
-      return $this->mediaDir();
+      return $this->mediaDir;
     }
   }
 
@@ -54,7 +59,7 @@ trait HasMedia
 
     // Store to the filesystem
     // store() starts from storage/app
-    $fqp = $media->store($this->localMediaPath());   // storage/app/public/{mediaDir()} or storage/app/{mediaDir()}
+    $fqp = $media->store($this->localMediaPath());   // storage/app/public/{mediaDir} or storage/app/{mediaDir}
 
     // If stored extension differs from original
     // add original extension
@@ -112,7 +117,7 @@ trait HasMedia
     if (!$this->isMediaPublic) throw new Exception('Access denied!');
     if (!$basename) throw new Exception('Media not found!');
 
-    return '/storage' . $this->mediaDir() . '/' . $basename;
+    return '/storage' . $this->mediaDir . '/' . $basename;
   }
 
   /**
