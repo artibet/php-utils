@@ -13,7 +13,7 @@
   "autoload": {
     "psr-4": {
       "Artibet\\PhpUtils\\": "src/",
-      "Artibet\\PhpUtils\\Laravel\\Traits\\": "src/laravel/traits"
+      "Artibet\\PhpUtils\\Laravel\\Traits\\": "src/laravel/traits/"
     }
   },
   "autoload-dev": {
