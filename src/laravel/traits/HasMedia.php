@@ -19,20 +19,11 @@ trait HasMedia
   protected $isMediaPublic = true;
 
   /**
-   * Media directory inside
+   * Media directory inside storage/app/[public]
    */
-  protected $mediaDir = '';
-
-
-  /**
-   * Path to media directory.
-   * Can be overriden into Model that uses the trait
-   * Path starts from storage/app
-   * @return string
-   */
-  protected function setMediaDir(string $dir): void
+  protected function getMediaDir(): string
   {
-    $this->mediaDir = $dir;
+    return '';
   }
 
   /**
@@ -41,9 +32,9 @@ trait HasMedia
   private function localMediaPath(): string
   {
     if ($this->isMediaPublic) {
-      return 'public' . $this->mediaDir;
+      return 'public' . $this->getMediaDir();
     } else {
-      return $this->mediaDir;
+      return $this->getMediaDir();
     }
   }
 
