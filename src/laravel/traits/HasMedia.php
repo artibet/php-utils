@@ -70,7 +70,7 @@ trait HasMedia
    * Return file size in KB in formated string
    * @param string $basename
    */
-  public function mediaSize(string $basename): string
+  public function mediaSize(?string $basename): string
   {
     if ($basename) {
       $path = $this->localMediaPath() .  '/' . $basename;
@@ -87,7 +87,7 @@ trait HasMedia
    * @param string $basename
    * @return string 
    */
-  public function mediaExtension(string $basename): string
+  public function mediaExtension(?string $basename): string
   {
     if ($basename) {
       $path = $this->localMediaPath() .  '/' . $basename;
@@ -103,12 +103,14 @@ trait HasMedia
    * @return string
    * @throws Exception
    */
-  public function mediaUrl(string $basename): string
+  public function mediaUrl(?string $basename): string
   {
     if (!$this->isMediaPublic) throw new Exception('Access denied!');
-    if (!$basename) throw new Exception('Media not found!');
-
-    return '/storage' . $this->mediaDir . '/' . $basename;
+    if ($basename) {
+      return '/storage' . $this->getMediaDir() . '/' . $basename;
+    } else {
+      return '';
+    }
   }
 
   /**
@@ -117,8 +119,10 @@ trait HasMedia
    * @param string $basename
    * @param boolean $deleteEmptyDir=false
    */
-  public function deleteMedia(string $basename, bool $deleteEmptyDir = false): bool
+  public function deleteMedia(?string $basename, bool $deleteEmptyDir = false): bool
   {
+    if (!$basename) return false;
+
     $flag = false;  // success indicator
 
     $filename = $this->localMediaPath() . '/' . $basename;
