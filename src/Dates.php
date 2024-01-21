@@ -59,7 +59,7 @@ class Dates
    * format protokollo from aa and date
    * $prot_date should be carbon
    */
-  public function formatProtokollo($prot_aa, $prot_date)
+  public static function formatProtokollo($prot_aa, $prot_date)
   {
     // $prot_date should be carbon
     if (!$prot_date) return '';
