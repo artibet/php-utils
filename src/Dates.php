@@ -54,4 +54,15 @@ class Dates
     if ($dayOfWeek === 6) return $upperCase ? 'ΣΑΒΒΑΤΟ' : 'Σάββατο';
     return "";
   }
+
+  /**
+   * format protokollo from aa and date
+   * $prot_date should be carbon
+   */
+  public function formatProtokollo($prot_aa, $prot_date)
+  {
+    // $prot_date should be carbon
+    if (!$prot_date) return '';
+    return $prot_aa . "/" . $prot_date->day . "-" . $prot_date->month . "-" . $prot_date->year;
+  }
 }
