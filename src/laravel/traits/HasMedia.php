@@ -114,6 +114,22 @@ trait HasMedia
   }
 
   /**
+   * Return the local media path
+   * It is relative to /storage/app
+   * @param string $basename
+   * @return string
+   */
+  public function mediaPath(?string $basename): string
+  {
+    if ($basename) {
+      return $this->localMediaPath() . '/' . $basename;
+    } else {
+      return '';
+    }
+  }
+
+
+  /**
    * Delete media file.
    * If $deleteEmptyDir is true and media's dir is empty delete dir as well
    * @param string $basename
