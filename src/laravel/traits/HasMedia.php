@@ -103,11 +103,12 @@ trait HasMedia
    * @return string
    * @throws Exception
    */
-  public function mediaUrl(?string $basename): string
+  public function mediaUrl(?string $basename, bool $full = false): string
   {
     if (!$this->isMediaPublic) throw new Exception('Access denied!');
     if ($basename) {
-      return '/storage' . $this->getMediaDir() . '/' . $basename;
+      $path = '/storage' . $this->getMediaDir() . '/' . $basename;
+      return $full ? url($path) : $path;
     } else {
       return '';
     }
