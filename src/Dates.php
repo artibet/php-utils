@@ -41,18 +41,37 @@ class Dates
   /**
    * Return a translation of week day in greek
    */
-  public static function getDay(Carbon $carbonDate, bool $upperCase = false): string
+  public static function getDay(Carbon $carbonDate, bool $upperCase = false, bool $article = false): string
   {
     if (!$carbonDate) return '';
     $dayOfWeek = $carbonDate->dayOfWeek;
-    if ($dayOfWeek === 0) return $upperCase ? 'ΚΥΡΙΑΚΗ' : 'Κυριακή';
-    if ($dayOfWeek === 1) return $upperCase ? 'ΔΕΥΤΕΡΑ' : 'Δευτέρα';
-    if ($dayOfWeek === 2) return $upperCase ? 'ΤΡΙΤΗ' : 'Τρίτη';
-    if ($dayOfWeek === 3) return $upperCase ? 'ΤΕΤΑΡΤΗ' : 'Τετάρτη';
-    if ($dayOfWeek === 4) return $upperCase ? 'ΠΕΜΠΤΗ' : 'Πέμπτη';
-    if ($dayOfWeek === 5) return $upperCase ? 'ΠΑΡΑΣΚΕΥΗ' : 'Παρασκευή';
-    if ($dayOfWeek === 6) return $upperCase ? 'ΣΑΒΒΑΤΟ' : 'Σάββατο';
-    return "";
+    $day = '';
+    $art = '';
+    if ($dayOfWeek === 0) {
+      $day = $upperCase ? 'ΚΥΡΙΑΚΗ' : 'Κυριακή';
+      $art = $upperCase ? 'ΤΗΝ' : 'την';
+    } else if ($dayOfWeek === 1) {
+      $day = $upperCase ? 'ΔΕΥΤΕΡΑ' : 'Δευτέρα';
+      $art = $upperCase ? 'ΤΗ' : 'τη';
+    } else if ($dayOfWeek === 2) {
+      $day = $upperCase ? 'ΤΡΙΤΗ' : 'Τρίτη';
+      $art = $upperCase ? 'ΤΗΝ' : 'την';
+    } else if ($dayOfWeek === 3) {
+      $day = $upperCase ? 'ΤΕΤΑΡΤΗ' : 'Τετάρτη';
+      $art = $upperCase ? 'ΤΗΝ' : 'την';
+    } else if ($dayOfWeek === 4) {
+      $day = $upperCase ? 'ΠΕΜΠΤΗ' : 'Πέμπτη';
+      $art = $upperCase ? 'ΤΗΝ' : 'την';
+    } else if ($dayOfWeek === 5) {
+      $day = $upperCase ? 'ΠΑΡΑΣΚΕΥΗ' : 'Παρασκευή';
+      $art = $upperCase ? 'ΤΗΝ' : 'την';
+    } else if ($dayOfWeek === 6) {
+      $day = $upperCase ? 'ΣΑΒΒΑΤΟ' : 'Σάββατο';
+      $art = $upperCase ? 'ΤΟ' : 'το';
+    }
+
+    if ($article) return $art . ' ' . $day;
+    else return $day;
   }
 
   /**
