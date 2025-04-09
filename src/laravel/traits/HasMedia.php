@@ -147,7 +147,7 @@ trait HasMedia
       $flag = Storage::delete($filename);
     }
 
-    if ($deleteEmptyDir && empty(Storage::files($this->localMediaPath()))) {
+    if ($deleteEmptyDir && empty(Storage::files($this->localMediaPath())) && empty(Storage::directories($this->localMediaPath()))) {
       Storage::deleteDirectory($this->localMediaPath());
     }
 
